@@ -2,6 +2,7 @@
 
 #region Imports
 import os
+from db import init_db, add_project, get_project, get_all_projects, update_project, delete_project
 #endregion
 
 #region Functions
@@ -13,6 +14,8 @@ def clear_terminal():
 #region Main Function
 def main():
 	"""Main function for project tracking system."""
+	# Initialise the database
+	init_db()
 	# Loop to simulate continuous operation until user decides to exit
 	while True:
 		clear_terminal()
@@ -24,17 +27,45 @@ def main():
 		print("3. Update Project")
 		print("4. Delete Project")
 		print("0. Exit")
-		choice = input("Enter choice: ")
+
+		# Get user choice and handle invalid input
+		try:
+			choice = int(input("Enter choice: "))
+		except ValueError:
+			print("Invalid input! Please enter a valid integer.")
+			input("Press Enter to continue...")
+			continue
 
 		match choice:
 			case 1:
-				print("Add Project selected.")
-				# Placeholder for adding project logic
+				clear_terminal()
+				print("Add New Project")
+				print("----------------")
+				name = input("Project Name: ")
+				description = input("Project Description: ")
+				status = input("Project Status: ")
+				add_project(name, description, status)
+				print("Project added successfully!")
 				input("Press Enter to continue...")
 			case 2:
-				print("View Projects selected.")
+				clear_terminal()
+				print("View Projects")
+				print("--------------")
+				id = int(input("Enter Project ID to view (or 0 to view all): "))
+				if id == 0:
+					projects = get_all_projects()
+					for project in projects:
+						print(f"Project ID: {project[0]}\r\nName: {project[1]}\r\nDescription: {project[2]}\r\nStatus: {project[3]}\n----------------")
+				else:
+					project = get_project(id)
+					if project:
+						print(f"Project ID: {project[0]}\r\nName: {project[1]}\r\nDescription: {project[2]}\r\nStatus: {project[3]}")
+					else:
+						print("Project not found.")
+				
 				# Placeholder for viewing projects logic
 				input("Press Enter to continue...")
+
 			case 3:
 				print("Update Project selected.")
 				# Placeholder for updating project logic
