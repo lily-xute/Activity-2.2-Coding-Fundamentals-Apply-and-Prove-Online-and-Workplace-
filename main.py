@@ -1,17 +1,17 @@
 """Homework project tracking system for projects."""
 
-#region Imports
+# region Imports
 import os
 from db import init_db, add_project, get_project, get_all_projects, update_project, delete_project
-#endregion
+# endregion
 
-#region Functions
+# region Functions
 def clear_terminal():
 	"""Clear the terminal screen on Windows, macOS, or Linux."""
 	os.system('cls' if os.name == 'nt' else 'clear')
-#endregion
+# endregion
 
-#region Main Function
+# region Main Function
 def main():
 	"""Main function for project tracking system."""
 	# Initialise the database
@@ -89,7 +89,7 @@ def main():
 			case _:
 				print("Invalid choice! Please try again.")
 				input("Press Enter to continue...")
-#endregion
+# endregion
 
 # Run the main function
 if __name__ == "__main__":
