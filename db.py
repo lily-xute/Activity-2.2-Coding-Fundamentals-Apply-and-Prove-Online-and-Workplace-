@@ -28,7 +28,6 @@ def init_db():
 #endregion
 
 #region CRUD Functions
-
 # Create
 def add_project(name, description, status):
 	conn = create_connection()

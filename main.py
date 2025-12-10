@@ -51,7 +51,15 @@ def main():
 				clear_terminal()
 				print("View Projects")
 				print("--------------")
-				id = int(input("Enter Project ID to view (or 0 to view all): "))
+
+				# ask user if they want to view all projects or a specific one and handle invalid input
+				try:
+					id = int(input("Enter Project ID to view (or 0 to view all): "))
+				except ValueError:
+					print("Invalid input! Please enter a valid integer.")
+					input("Press Enter to continue...")
+					continue
+
 				if id == 0:
 					projects = get_all_projects()
 					for project in projects:
@@ -62,8 +70,7 @@ def main():
 						print(f"Project ID: {project[0]}\r\nName: {project[1]}\r\nDescription: {project[2]}\r\nStatus: {project[3]}")
 					else:
 						print("Project not found.")
-				
-				# Placeholder for viewing projects logic
+						
 				input("Press Enter to continue...")
 
 			case 3:
@@ -74,9 +81,11 @@ def main():
 				print("Delete Project selected.")
 				# Placeholder for deleting project logic
 				input("Press Enter to continue...")
+			# exit case
 			case 0:
 				print("Exiting the program.")
 				break
+			# case for invalid choices
 			case _:
 				print("Invalid choice! Please try again.")
 				input("Press Enter to continue...")
