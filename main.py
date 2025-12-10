@@ -68,22 +68,22 @@ def main():
 					projects = get_all_projects()
 					for project in projects:
 						output = (
-									f"Project ID: {project[0]}\r\n"
-									f"Name: {project[1]}\r\n"
-									f"Description: {project[2]}\r\n"
-									f"Status: {project[3]}\n"
-									"----------------"
-								)
+							f"Project ID: {project[0]}\r\n"
+							f"Name: {project[1]}\r\n"
+							f"Description: {project[2]}\r\n"
+							f"Status: {project[3]}\n"
+							"----------------"
+						)
 						print(output)
 				else:
 					project = get_project(id)
 					if project:
 						output = (
-									f"Project ID: {project[0]}\r\n"
-									f"Name: {project[1]}\r\n"
-									f"Description: {project[2]}\r\n"
-									f"Status: {project[3]}"
-								)
+							f"Project ID: {project[0]}\r\n"
+							f"Name: {project[1]}\r\n"
+							f"Description: {project[2]}\r\n"
+							f"Status: {project[3]}"
+						)
 						print(output)
 					else:
 						print("Project not found.")
