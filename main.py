@@ -2,7 +2,7 @@
 
 # region Imports
 import os
-from db import init_db, add_project, get_project, get_all_projects, update_project, delete_project
+from db import init_db, add_project, get_project, get_all_projects # , update_project, delete_project
 # endregion
 
 # region Functions
