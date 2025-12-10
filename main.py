@@ -6,12 +6,16 @@ from db import init_db, add_project, get_project, get_all_projects, update_proje
 # endregion
 
 # region Functions
+
+
 def clear_terminal():
 	"""Clear the terminal screen on Windows, macOS, or Linux."""
 	os.system('cls' if os.name == 'nt' else 'clear')
 # endregion
 
 # region Main Function
+
+
 def main():
 	"""Main function for project tracking system."""
 	# Initialise the database
@@ -63,11 +67,20 @@ def main():
 				if id == 0:
 					projects = get_all_projects()
 					for project in projects:
-						print(f"Project ID: {project[0]}\r\nName: {project[1]}\r\nDescription: {project[2]}\r\nStatus: {project[3]}\n----------------")
+						output = (f"Project ID: {project[0]}\r\n"
+								  f"Name: {project[1]}\r\n"
+								  f"Description: {project[2]}\r\n"
+								  f"Status: {project[3]}\n"
+								  "----------------")
+						print(output)
 				else:
 					project = get_project(id)
-					if project:
-						print(f"Project ID: {project[0]}\r\nName: {project[1]}\r\nDescription: {project[2]}\r\nStatus: {project[3]}")
+					if project:#
+						output = (f"Project ID: {project[0]}\r\n"
+								  f"Name: {project[1]}\r\n"
+								  f"Description: {project[2]}\r\n"
+								  f"Status: {project[3]}")
+						print(output)
 					else:
 						print("Project not found.")
 						

@@ -1,20 +1,24 @@
 """DB for Homework project tracking system for projects."""
 
-#region Imports
+# region Imports
 import sqlite3
-#endregion
+# endregion
 
-#region Constants
+# region Constants
 DB_NAME = "projects.db"
-#endregion
+# endregion
 
-#region Database Functions
+# region Database Functions
+
+
 def create_connection():
 	conn = sqlite3.connect(DB_NAME)
 	return conn
-#endregion
+# endregion
 
-#region Initialisation Function
+# region Initialisation Function
+
+
 def init_db():
 	conn = create_connection()
 	cursor = conn.cursor()
@@ -25,10 +29,12 @@ def init_db():
 						status TEXT)''')
 	conn.commit()
 	conn.close()
-#endregion
+# endregion
 
-#region CRUD Functions
+# region CRUD Functions
 # Create
+
+
 def add_project(name, description, status):
 	conn = create_connection()
 	cursor = conn.cursor()
@@ -37,6 +43,8 @@ def add_project(name, description, status):
 	conn.close()
 
 # Read
+
+
 def get_project(proj_id):
 	conn = create_connection()
 	cursor = conn.cursor()
@@ -46,6 +54,8 @@ def get_project(proj_id):
 	return result
 
 # Read All
+
+
 def get_all_projects():
 	conn = create_connection()
 	cursor = conn.cursor()
@@ -55,6 +65,8 @@ def get_all_projects():
 	return results
 
 # Update
+
+
 def update_project(proj_id, name, description, status):
 	conn = create_connection()
 	cursor = conn.cursor()
@@ -63,10 +75,12 @@ def update_project(proj_id, name, description, status):
 	conn.close()
 
 # Delete
+
+
 def delete_project(proj_id):
 	conn = create_connection()
 	cursor = conn.cursor()
 	cursor.execute("DELETE FROM projects WHERE id=?", (proj_id,))
 	conn.commit()
 	conn.close()
-#endregion
+# endregion
