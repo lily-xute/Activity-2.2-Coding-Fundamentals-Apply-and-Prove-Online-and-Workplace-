@@ -2,7 +2,7 @@
 
 # region Imports
 import os
-from db import init_db, add_project, get_project, get_all_projects, update_project  #  , delete_project
+from db import init_db, add_project, get_project, get_all_projects, update_project, delete_project
 # endregion
 
 # region Functions
@@ -41,6 +41,7 @@ def main():
 			continue
 
 		match choice:
+
 			case 1:
 				clear_terminal()
 				print("Add New Project")
@@ -51,6 +52,7 @@ def main():
 				add_project(name, description, status)
 				print("Project added successfully!")
 				input("Press Enter to continue...")
+
 			case 2:
 				clear_terminal()
 				print("View Projects")
@@ -107,6 +109,7 @@ def main():
 					print("Project not found.")
 					input("Press Enter to continue...")
 					continue
+
 				print("Current Project Details:")
 				project = get_project(id)
 				output = (
@@ -131,14 +134,52 @@ def main():
 				update_project(id, name, description, status)
 				print("Project updated successfully!")
 				input("Press Enter to continue...")
+
 			case 4:
-				print("Delete Project selected.")
-				# Placeholder for deleting project logic
+				clear_terminal()
+				print("Delete Project")
+				print("--------------")
+
+				# ask for project ID to delete
+				try:
+					id = int(input("Enter Project ID to delete: "))
+				except ValueError:
+					print("Invalid input! Please enter a valid integer.")
+					input("Press Enter to continue...")
+					continue
+
+				if not get_project(id):
+					print("Project not found.")
+					input("Press Enter to continue...")
+					continue
+				
+				print("Current Project Details:")
+				project = get_project(id)
+				output = (
+					f"Project ID: {project[0]}\r\n"
+					f"Name: {project[1]}\r\n"
+					f"Description: {project[2]}\r\n"
+					f"Status: {project[3]}"
+				)
+				print(output)
+				print("----------------")
+
+				# confirm deletion
+				confirm = input("Are you sure you want to delete this project? (y/n): ")
+				if confirm.lower() == 'y':
+					# delete_project(id)
+					delete_project(id)
+					print("Project deleted successfully!")
+				else:
+					print("Deletion cancelled.")
+
 				input("Press Enter to continue...")
+
 			# exit case
 			case 0:
 				print("Exiting the program.")
 				break
+
 			# case for invalid choices
 			case _:
 				print("Invalid choice! Please try again.")
