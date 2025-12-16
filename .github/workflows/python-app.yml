@@ -42,7 +42,7 @@ jobs:
       - name: Build artifact
         run: |
           mkdir -p dist
-          echo "Example build content" > dist/README.txt
+          echo "Latest build of project" > dist/README.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
